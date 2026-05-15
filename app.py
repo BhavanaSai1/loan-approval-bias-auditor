@@ -31,7 +31,16 @@ def load_data():
 df = load_data()
 
 # Load model
-model = pickle.load(open("model.pkl", "rb"))
+@st.cache_resource
+def load_model():
+    from sklearn.ensemble import RandomForestClassifier
+    data = load_data()
+    X = data.drop('approved', axis=1)
+    y = data['approved']
+    mdl = RandomForestClassifier(n_estimators=50, random_state=42)
+    mdl.fit(X, y)
+    return mdl
+model = load_model()
 
 # Sidebar
 st.sidebar.title("Navigation")
