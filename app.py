@@ -20,7 +20,7 @@ st.markdown("---")
 # Load data
 @st.cache_data
 def load_data():
-    df = pd.read_csv("hmda_cleaned.csv")
+    df = pd.read_csv("hmda_sample.csv")
     df['debt_to_income_ratio'] = pd.to_numeric(df['debt_to_income_ratio'], errors='coerce')
     df['loan_to_value_ratio'] = pd.to_numeric(df['loan_to_value_ratio'], errors='coerce')
     df['property_value'] = pd.to_numeric(df['property_value'], errors='coerce')
